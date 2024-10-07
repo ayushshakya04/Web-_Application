@@ -1,14 +1,20 @@
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 const location = process.env.SQLITE_DB_LOCATION || '/etc/todos/todo.db';
+const todosDirectory = path.join(__dirname, 'todos'); // Change to a relative directory
+
+// Create the directory if it doesn't exist
+// if (!fs.existsSync(todosDirectory)) {
+//     fs.mkdirSync(todosDirectory, { recursive: true });
+// }
 
 let db, dbAll, dbRun;
 
 function init() {
     const dirName = require('path').dirname(location);
-    if (!fs.existsSync(dirName)) {
-        fs.mkdirSync(dirName, { recursive: true });
-    }
+    if (!fs.existsSync(todosDirectory)) {
+            fs.mkdirSync(todosDirectory, { recursive: true });
+        }
 
     return new Promise((acc, rej) => {
         db = new sqlite3.Database(location, err => {
