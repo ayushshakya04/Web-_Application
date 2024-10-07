@@ -11,21 +11,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      # - name: Checkout code
+      #   uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18.14'  # Specify the Node.js version
+          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci  # This ensures a clean install based on package-lock.json
+      # - name: Install dependencies
+      - run: npm ci  # This ensures a clean install based on package-lock.json
+      # - run: npm run
 
-      - name: Run tests
-        run: |
-          # Add your test commands here, e.g., jest, mocha, etc.
-          echo "No tests defined"  # Placeholder; replace with your test command
+      # - name: Run tests
+      #   run: |
+      #     # Add your test commands here, e.g., jest, mocha, etc.
+      #     echo "No tests defined"  # Placeholder; replace with your test command
 
       - name: Run Node.js App
         run: |
