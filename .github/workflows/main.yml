@@ -14,8 +14,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-            - name: Run a code
-              run: yarn install --production
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.14'  # Specify the Node.js version
 
-        
+      - name: Install dependencies
+        run: npm ci  # This ensures a clean install based on package-lock.json
 
+      - name: Run tests
+        run: |
+          # Add your test commands here, e.g., jest, mocha, etc.
+          echo "No tests defined"  # Placeholder; replace with your test command
+
+      - name: Run Node.js App
+        run: |
+          node src/index.js  # Update this path to your main entry file
